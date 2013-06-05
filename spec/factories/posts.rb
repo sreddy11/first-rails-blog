@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :post do
+    sequence(:title) {|n| "post title #{n}"}
+    content {"string"}
   end
 end
