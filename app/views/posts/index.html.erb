@@ -1,5 +1,8 @@
 <h1> Posts </h1>
+<p> <%= link_to "Make new post", new_post_path %> </p>
 <% @posts.each do |post| %>
   <h2> <%= link_to post.title, post_path(post) %> </h2>
   <p> <%= post.content %> </p>
+  <p> <%= link_to "Edit this post", edit_post_path(post) %> </p>
+  
 <% end %>
