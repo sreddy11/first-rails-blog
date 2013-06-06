@@ -101,4 +101,16 @@ describe PostsController do
 
   end
 
+  describe "Delete to #delete do" do
+    let!(:post) { FactoryGirl.create(:post) }
+
+    before do
+      delete :destroy, :id => post.id
+    end
+
+    it { should respond_with(:redirect) }
+    it { should redirect_to(posts_path) }
+  end
+
+
 end

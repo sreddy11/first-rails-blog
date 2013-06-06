@@ -1,0 +1,8 @@
+
+<h1> Comments </h1>
+<% @comments.each do |comment| %>
+  <h2> <%= comment.username %> </h2> 
+  <p> <%= comment.body %> </p>
+  <%= link_to "Edit this comment", edit_post_comment_path(comment.post, comment) %> </p>
+  
+<% end %>
