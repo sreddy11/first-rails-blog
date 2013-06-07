@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.new(params[:comment])
+
     if @comment.save
       redirect_to(@comment.post)
     else
@@ -29,8 +30,9 @@ class CommentsController < ApplicationController
 
   def update
     @comment = @post.comments.find(params[:id])
-    if @comment.update_attributes(params[:comment])
-      redirect_to(@comment.post)
+
+    if @comment.update_attributes(params[:comment]) 
+      redirect_to(post_path(@post))
     else
       render(:edit)
     end

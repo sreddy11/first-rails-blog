@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PostsController do
-
+  
   describe "GET to #index" do
     let!(:posts) { [FactoryGirl.create(:post)] }
     
@@ -19,6 +19,7 @@ describe PostsController do
     let!(:post) { FactoryGirl.create(:post) }
 
     before do
+      authenticate
       get :show, :id => post.id
     end
 
@@ -31,6 +32,7 @@ describe PostsController do
   describe "Get to #new" do
      
     before do
+      authenticate
       get :new
     end
 
@@ -43,6 +45,7 @@ describe PostsController do
   describe "Post to #create" do
     context "fields are valid" do
       before do
+        authenticate
         post :create, :post => {:title => "new title", :content => "created content"}
       end
 
@@ -52,6 +55,7 @@ describe PostsController do
 
     context "fields are invalid" do
       before do
+        authenticate
         post :create
       end
       it { should respond_with(:success) }
@@ -66,6 +70,7 @@ describe PostsController do
     let!(:post) { FactoryGirl.create(:post) }
     
     before do
+      authenticate
       get :edit, :id => post.id
     end
 
@@ -81,6 +86,7 @@ describe PostsController do
 
     context "fields are valid" do
       before do
+        authenticate
         put :update, :id =>post.id, :post=> {:title => "updated title", :content => "updated content"}
       end
 
@@ -90,6 +96,7 @@ describe PostsController do
 
     context "fields are not valid" do
       before do
+        authenticate
         put :update, :id => post.id, :post => {:title => ""}
       end
 
@@ -105,6 +112,7 @@ describe PostsController do
     let!(:post) { FactoryGirl.create(:post) }
 
     before do
+      authenticate
       delete :destroy, :id => post.id
     end
 

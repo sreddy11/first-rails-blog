@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
  
   before_filter :find_post, :only => [:show, :edit, :update, :destroy] 
-   
+  http_basic_authenticate_with :name => "sreddy1", :password => "password", :except => :index
+  
   def index
     @posts = Post.all
   end
@@ -11,6 +12,7 @@ class PostsController < ApplicationController
 
 
   def new
+    
     @post = Post.new
   end
 
